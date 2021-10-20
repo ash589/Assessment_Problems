@@ -1,0 +1,70 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.print.attribute.HashAttributeSet;
+
+public class NewUser{
+	private int id;
+	private String name;
+	private int salary;
+	public NewUser(int id, String name, int salary) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.salary = salary;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getSalary() {
+		return salary;
+	}
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+	
+	public String toString() {
+		return "[" + id + ", " + name + ", " + salary + "]";
+	}
+	
+	public static void main(String[] args) {
+		
+		List<NewUser> users = new ArrayList<>();
+		users.add(new NewUser(1, "Rajesh", 100));
+		users.add(new NewUser(3, "Raj", 600));
+		users.add(new NewUser(2, "Ashish", 400));
+		users.add(new NewUser(4, "Pankaj", 200));
+		Collections.sort(users, new userComparator());
+		
+		LinkedHashMap<Integer, NewUser> userMap = new LinkedHashMap<>();
+		userMap.put(new Integer(users.get(0).getId()), users.get(0));
+		userMap.put(new Integer(users.get(1).getId()), users.get(1));
+		userMap.put(new Integer(users.get(2).getId()), users.get(2));
+		userMap.put(new Integer(users.get(3).getId()), users.get(3));
+		for(Map.Entry<Integer, NewUser> entry: userMap.entrySet()) {
+			System.out.println("Key: " + entry.getKey() + " " + "Value: " + entry.getValue().toString());
+		}
+		
+	}
+}
+
+
+class userComparator implements Comparator<NewUser> {
+	public int compare(NewUser o1, NewUser o2) {
+		return o1.getSalary() - o2.getSalary();
+	}
+}
