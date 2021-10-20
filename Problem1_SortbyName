@@ -1,0 +1,48 @@
+import java.util.*;
+import java.io.*;
+
+class User{
+    
+    int id;
+    String name;
+    int salary;
+    
+    public User(int id,String name,int salary){
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    }
+    
+    public String toString(){
+        return this.id+" "+this.name+" "+this.salary;
+    }
+}
+
+class Sortbyname implements Comparator<User>{
+    public int compare(User a,User b)
+    {
+        return a.name.compareTo(b.name); 
+    }
+}
+
+class Problem1_SortbyName {
+	public static void main (String[] args) {
+		
+		List<User> userList = new ArrayList<>();
+		
+		User u1 = new User(11,"Pankaj",1000);
+		User u2 = new User(12,"Ashish",2000);
+		User u3 = new User(13,"Raj",3000);
+		userList.add(u1);
+		userList.add(u2);
+		userList.add(u3);
+		
+		
+		Collections.sort(userList, new Sortbyname());
+		
+		for(User u:userList){
+		    System.out.println(u);
+		}
+		
+	}
+}
